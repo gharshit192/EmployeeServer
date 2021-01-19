@@ -41,8 +41,11 @@ class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     fun updateUser(@QueryParam("id") id: String,request: String): Response{
-        val updateUser = userService.updateUser(id,objectMapper.readValue(request,User::class.java))
-        return Response.ok(updateUser.toString()).build()
+        val updateUser = userService.updateUser(id, objectMapper.readValue(request, User::class.java))
+        return if (!updateUser) {
+            Response.ok().entity("Enter Correct Credentials").build()
+        }else
+            Response.ok(updateUser.toString()).build()
     }
 
     @DELETE
@@ -53,5 +56,8 @@ class UserResource {
         return Response.ok(deleteUser).build()
     }
 }
-
-
+//if (person != null) {
+//    if (userService.updateUser(id, person)) Response.ok("User Updated!!").build()
+//    else Response.status(Response.Status.INTERNAL_SERVER_ERROR).build()
+//} else {
+//    Response.status(Response.Status.NOT_MODIFIED).build()

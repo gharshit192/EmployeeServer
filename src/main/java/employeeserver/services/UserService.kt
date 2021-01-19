@@ -6,8 +6,9 @@ class UserService {
      private val userRepository = UserRepository()
 
      fun addUser(user: User): User {
-         user.name ?: throw NullPointerException("Please Enter Name")
-         user.email ?: throw NullPointerException("Please Enter Email")
+         if(user.name== null || user.email ==null){
+             throw NullPointerException("Please Enter Name")
+         }
          return userRepository.addUser(user)
      }
      fun getUser(id: String): User {
@@ -16,7 +17,7 @@ class UserService {
          else
              return userRepository.getUser(id)
      }
-     fun updateUser(id: String, user: User): User {
+     fun updateUser(id: String, user: User): Boolean {
          return userRepository.updateUser(id,user)
      }
      fun deleteUser(id: String): User {
