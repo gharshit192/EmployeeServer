@@ -12,4 +12,5 @@ class User {
                 ", email='" + email + '\'' +
                 '}'
     }
+
 }

@@ -45,7 +45,7 @@ class UserResource {
         return if (!updateUser) {
             Response.ok().entity("Enter Correct Credentials").build()
         }else
-            Response.ok(updateUser.toString()).build()
+            Response.ok(updateUser.toString()).entity("User is updated").build()
     }
 
     @DELETE
@@ -53,11 +53,7 @@ class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     fun deleteUser(@PathParam("id") id : String) : Response{
         val deleteUser = userService.deleteUser(id)
-        return Response.ok(deleteUser).build()
+        return Response.ok(deleteUser).entity("User is deleted").build()
     }
 }
-//if (person != null) {
-//    if (userService.updateUser(id, person)) Response.ok("User Updated!!").build()
-//    else Response.status(Response.Status.INTERNAL_SERVER_ERROR).build()
-//} else {
-//    Response.status(Response.Status.NOT_MODIFIED).build()
+

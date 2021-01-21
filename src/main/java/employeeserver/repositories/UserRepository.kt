@@ -23,7 +23,6 @@ class UserRepository {
 //        val index = indexOfUser.toString()
         if (indexOfUser == -1)
             return  false
-//            throw WrongParserException("Please Enter Correct ID")
         else
             user.id= id
             usersList.add(indexOfUser,user)
@@ -31,7 +30,10 @@ class UserRepository {
     }
     fun deleteUser(id: String): User {
         val indexOfUser = usersList.indexOfFirst { it.id == id }
-        return usersList.removeAt(indexOfUser)
+        if (indexOfUser == -1)
+            return usersList[indexOfUser]
+        else
+            return usersList.removeAt(indexOfUser)
     }
 
 }
