@@ -8,7 +8,7 @@ class UserRepository {
         var usersMap: HashMap<CharSequence, User> = hashMapOf()
         //      var usersListEmail: MutableList<CharSequence> = mutableListOf()
     }
-    fun addUser(user: User): User {
+    fun addUser(user: User): Boolean {
         usersMap[user.getId()] = user
 //        usersListEmail.add(user.email)
 //        var value = usersListEmail.contains(user.email)
@@ -18,10 +18,11 @@ class UserRepository {
 //            usersMap.put(user.getId(), user)
 //            return user
 //        }
-        return user
+        return true
     }
-    fun getUser(id: String): User {
-        return usersMap[id] ?: throw NullPointerException("Enter proper id")
+    fun getUser(id: String): Boolean {
+         usersMap[id] ?: throw NullPointerException("Enter proper id")
+        return true
     }
     fun updateUser(id: String, user: User): Boolean {
         val value = usersMap.containsKey(id)

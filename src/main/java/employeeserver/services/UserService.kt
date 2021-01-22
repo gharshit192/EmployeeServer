@@ -6,14 +6,14 @@ import java.lang.IllegalArgumentException
 class UserService {
     private val userRepository = UserRepository()
 
-    fun addUser(user: User): User {
+    fun addUser(user: User): Boolean {
         if (user.name == null || user.email == null) {
             throw NullPointerException("Please Enter Name")
         }
         return userRepository.addUser(user)
     }
 
-    fun getUser(id: String): User {
+    fun getUser(id: String): Boolean {
         if (id.isEmpty())
             throw NullPointerException("Enter proper id")
         else
