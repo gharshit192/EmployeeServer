@@ -1,39 +1,43 @@
 package employeeserver.repositories
-import com.sun.org.apache.xml.internal.utils.WrongParserException
 import employeeserver.model.User
-import javassist.NotFoundException
+
 
 class UserRepository {
-    ///Make the list and map static
+    ///Make the  map static
     companion object {
-        var usersList: MutableList<User> = mutableListOf()
-   //     var usersMap : MutableMap<Int,User> = mutableMapOf()
+        var usersMap: HashMap<CharSequence, User> = hashMapOf()
+        //      var usersListEmail: MutableList<CharSequence> = mutableListOf()
     }
-    fun addUser(user : User): User{
-        usersList.add(user)
-        print(usersList)
+    fun addUser(user: User): User {
+        usersMap[user.getId()] = user
+//        usersListEmail.add(user.email)
+//        var value = usersListEmail.contains(user.email)
+//        if (value){
+//            throw Exception("Enter correct email id or email id is already entered")
+//        }else {
+//            usersMap.put(user.getId(), user)
+//            return user
+//        }
         return user
     }
     fun getUser(id: String): User {
-        val user = usersList.find { it.id == id } ?: throw NotFoundException("Enter proper Id")
-        return user
+        return usersMap[id] ?: throw NullPointerException("Enter proper id")
     }
-    fun updateUser(id: String,user: User): Boolean {
-        val indexOfUser = usersList.indexOfFirst { it.id == id }
-//        val index = indexOfUser.toString()
-        if (indexOfUser == -1)
-            return  false
-        else
-            user.id= id
-            usersList.add(indexOfUser,user)
+    fun updateUser(id: String, user: User): Boolean {
+        val value = usersMap.containsKey(id)
+        if (value) {
+            usersMap[id] = user
             return true
+        } else {
+            throw Exception("Id not found")
+        }
     }
-    fun deleteUser(id: String): User {
-        val indexOfUser = usersList.indexOfFirst { it.id == id }
-        if (indexOfUser == -1)
-            return usersList[indexOfUser]
-        else
-            return usersList.removeAt(indexOfUser)
+    fun deleteUser(id: String): Boolean {
+        val value = usersMap.containsKey(id)
+        return if (value) {
+            usersMap.remove(id)
+            true
+        } else
+            false
     }
-
 }

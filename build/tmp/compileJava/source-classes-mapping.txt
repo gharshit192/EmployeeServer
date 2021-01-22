@@ -1,2 +1,4 @@
-employeeserver/model/UserModel.java
- employeeserver.model.UserModel
+employeeserver/model/User.java
+ employeeserver.model.User
+ employeeserver.model.User$1
+ employeeserver.model.User$Builder

@@ -1,0 +1,21 @@
+{
+    "type" : "record",
+    "namespace" : "employeeserver.model",
+    "name" : "User",
+    "fields":
+  [
+    {
+            "name" : "id",
+            "type" : "string"
+    },
+    {
+            "name" : "name",
+            "type" : "string"
+    },
+    {
+            "name" : "email",
+            "type" : "string"
+    }
+
+  ]
+}

@@ -9,4 +9,7 @@ fun main() {
     var baseUri: URI = UriBuilder.fromUri("http://localhost/").port(8080).build()
     var config: ResourceConfig = ResourceConfig(UserResource::class.java)
     var server: HttpServer = GrizzlyHttpServerFactory.createHttpServer(baseUri, config)
+
+
+
 }

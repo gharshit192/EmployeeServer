@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.20'
 }
 
 group 'org.example'
@@ -11,21 +11,21 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
-    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.32'
-    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.32'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    //jersey
+    implementation 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:2.32'
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.32'
     //api for json
-    compile group: 'org.json', name: 'json', version: '20201115'
-
+    implementation group: 'org.json', name: 'json', version: '20201115'
+    // junit
     testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.27'
-    //object mapper for kotlin
-//    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.8.+'
-
+    // jersey server
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.27'
     //object mapper
     implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.32'
+    //avro
+    implementation group: 'org.apache.avro', name: 'avro', version: '1.7.4'
+
 }
 
 test {
