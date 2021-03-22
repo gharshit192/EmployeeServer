@@ -47,13 +47,7 @@ class UserResource {
         }else
             Response.ok(updateUser.toString()).entity("User is updated").build()
     }
+    //////// testing testibng
 
-    @DELETE
-    @Path("/user/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    fun deleteUser(@PathParam("id") id : String) : Response{
-        val deleteUser = userService.deleteUser(id)
-        return Response.ok(deleteUser).entity("User is deleted").build()
-    }
 }
 
